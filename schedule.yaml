@@ -1,0 +1,22 @@
+apiVersion: velero.io/v1
+kind: Schedule
+metadata:
+  name: day
+  namespace: velero
+status:
+  phase: Enabled
+spec:
+  schedule: "0 0 * * *"
+  skipImmediately: false
+  template:
+    csiSnapshotTimeout: 0s
+    hooks: {}
+    includedNamespaces:
+      - 'development'
+      - 'ingress'
+    excludedResources:
+      - 'pods'
+    itemOperationTimeout: 0s
+    metadata: {}
+    ttl: 0s
+  useOwnerReferencesInBackup: false
